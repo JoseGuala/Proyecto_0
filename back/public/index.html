@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        .hidden {
+            display: none;
+        }
+        /* Fa que la barra de progrés i el cronòmetre "segueixin" en pujar/baixar */
+        #zonaJoc {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: white;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-end">
+        <a href="/admin.html" class="small text-muted">Administració</a>
+    </div>
+
+    <div class="container text-center my-4">
+        <div id="divBenvinguda" class="fs-4 mb-2"></div>
+
+        <div class="d-flex justify-content-center gap-2">
+            <input type="text" id="inputNom" class="form-control w-auto" placeholder="El teu nom">
+            <button id="btnGuardar" class="btn btn-success">Guardar</button>
+            <button id="btnEsborrar" class="btn btn-danger">Esborrar</button>
+        </div>
+    </div>
+
+    <!-- Aquests tres blocs comencen amagats: només es mostren un cop hi ha nom -->
+    <div id="zonaJoc" class="container text-center my-3 hidden">
+        <div class="progress" style="height: 25px;">
+            <div id="barra-progres" class="progress-bar bg-success" role="progressbar" style="width: 0%;">0%</div>
+        </div>
+        <p class="mt-2 fs-5">Temps: <span id="cronometre">00:00</span></p>
+    </div>
+
+    <div id="marcador" class="text-center fs-5 mb-3 hidden"></div>
+
+    <div id="partida" class="hidden"></div>
+
+    <div class="container text-center my-4">
+        <button id="btnEnviarResultats" class="btn btn-danger hidden">Enviar Resultats</button>
+    </div>
+
+    <script src="funcions.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

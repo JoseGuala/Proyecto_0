@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administració de preguntes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        .imatge-preview { max-width: 120px; max-height: 120px; object-fit: cover; }
+        .resposta-correcta { background-color: #d1e7dd; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container my-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 m-0">Administració de preguntes</h1>
+            <a href="/index.html" class="btn btn-outline-secondary btn-sm">Anar al joc</a>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 id="titolFormulari" class="h5 mb-3">Nova pregunta</h2>
+                <form id="formPregunta">
+                    <input type="hidden" id="preguntaId">
+
+                    <div class="mb-3">
+                        <label class="form-label">Pregunta</label>
+                        <input type="text" id="campPregunta" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Imatge (opcional)</label>
+                        <input type="file" id="campImatge" class="form-control" accept="image/*">
+                        <img id="previewImatgeActual" class="imatge-preview mt-2 d-none">
+                    </div>
+
+                    <label class="form-label">Respostes (marca quina és la correcta)</label>
+                    <div id="campsRespostes">
+                        <div class="input-group mb-2" data-index="0">
+                            <span class="input-group-text">
+                                <input type="radio" name="correcta" value="0" checked>
+                            </span>
+                            <input type="text" class="form-control camp-etiqueta" placeholder="Resposta 1" required>
+                        </div>
+                        <div class="input-group mb-2" data-index="1">
+                            <span class="input-group-text">
+                                <input type="radio" name="correcta" value="1">
+                            </span>
+                            <input type="text" class="form-control camp-etiqueta" placeholder="Resposta 2" required>
+                        </div>
+                        <div class="input-group mb-2" data-index="2">
+                            <span class="input-group-text">
+                                <input type="radio" name="correcta" value="2">
+                            </span>
+                            <input type="text" class="form-control camp-etiqueta" placeholder="Resposta 3" required>
+                        </div>
+                        <div class="input-group mb-3" data-index="3">
+                            <span class="input-group-text">
+                                <input type="radio" name="correcta" value="3">
+                            </span>
+                            <input type="text" class="form-control camp-etiqueta" placeholder="Resposta 4" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btnEnviarFormulari" class="btn btn-success">Crear pregunta</button>
+                    <button type="button" id="btnCancelarEdicio" class="btn btn-outline-secondary d-none">Cancel·lar edició</button>
+                </form>
+                <div id="errorFormulari" class="text-danger mt-2"></div>
+            </div>
+        </div>
+
+        <h2 class="h5 mb-3">Preguntes existents</h2>
+        <div id="llistaPreguntes" class="row g-3"></div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+services:
+  db:
+    image: mysql:8
+    container_name: quiz-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./back/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    # Sin 'ports': MySQL solo es accesible desde 'backend', dentro de la red de Docker.
+
+  backend:
+    build: ./back
+    container_name: quiz-backend
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    ports:
+      - "${APP_PORT}:3002"
+
+volumes:
+  db_data:
